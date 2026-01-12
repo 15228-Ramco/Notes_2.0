@@ -1,0 +1,185 @@
+SOLID Principles
+They are a set of 5 design principle in oops that aims to make software designs easy to maintain.
+Single responsibility principle : 
+
+
+Oops
+Exception 
+custom exception
+
+Collection
+Linq
+Where
+select
+join
+groupby
+orderby
+sort and orderby def
+
+Anonymus method
+Lambda exception
+where and Find diff 
+Read json with newtonsoft and store in a list of clss objects
+jsonConvert.Deserialize()
+json data time and .net date time
+
+
+join
+
+var result = customers.Join(
+    orders,
+    c => c.CustomerId,
+    o => o.CustomerId,
+    (c, o) => new
+    {
+        CustomerName = c.Name,
+        o.Product
+    }
+	);
+	
+	
+Linq
+
+First
+
+FirstOrDefault
+
+Last
+
+LastOrDefault
+
+Single
+
+SingleOrDefault
+
+ElementAt 
+
+ElementAtOrDefault - will give 0 incase the index is not valid, to return null in this case make the list as nullable List<int?>
+
+DefaultIfEmpt	
+	
+
+Write a LINQ query to get the top 3 employees with the highest salaries from a list.
+		List<double> salary = new List<double>() { 1234, 1235, 1236, 1237, 12, 12379, 1111, 100000 };
+		var max3Sal = salary.OrderDescending().Distinct().Take(3);
+Duplicate
+		 List<int> numbers = new List<int> { 1, 3, 5, 3, 7, 9, 1, 5, 11 };
+
+	List<int> duplicates=new List<int>();
+	foreach (var n in numbers)
+	{
+		if (numbers.FindAll(x=>x==n).Count() > 1 && !duplicates.Contains(n))
+			{
+			duplicates.Add(n);
+			}
+	}
+	
+Find the missing number in a series
+ List<int> nums=new List<int>() { 1,2,4,6,8,10};
+ var no=Enumerable.Range(0,nums.Max()).Except(nums).ToList();	
+ 
+ Enumeration (Enum) in C#
+ 
+ 
+ IEnumerable,ICollection,IList
+ 
+ IEnumerable - Basic interface for iteration over collection,allows the use of foreach to iterate over the collection
+ ICollection - Implements IEnumerable, Aditonal features to add/remove items to the list of items/objects
+ IList 		 - Implements ICollection,Aditonal features to Add/Remove items at a specifc index to the list of items.objects	
+ IQueryable  - IQueryable inherits from IEnumerable, so anything you can do with IEnumerable, you can do with IQueryable too. 
+				The key difference is where the query is executed:
+				With IEnumerable, the query is executed in-memory (on the client). Even if it’s connected to a database (like Entity Framework), 
+					it fetches all the data first, and then applies filters in memory.
+				With IQueryable, the query is translated into SQL and executed on the server/database, 
+					so only the filtered data is retrieved, making it much more efficient for large datasets.
+					
+					// Assume dbContext.Users is a DbSet<User>
+
+					// IEnumerable: Fetches all users into memory, then filters
+					IEnumerable<User> usersEnum = dbContext.Users;
+					var filteredEnum = usersEnum.Where(u => u.Name == "John");
+					
+					// IQueryable: Translates to SQL WHERE clause and filters in DB
+					IQueryable<User> usersQuery = dbContext.Users;
+					var filteredQuery = usersQuery.Where(u => u.Name == "John");
+					filteredEnum causes all users to be loaded into memory, then filtered.
+
+					filteredQuery sends a SQL like SELECT * FROM Users WHERE Name = 'John'.	
+					
+LINQ queries are often lazily evaluated.
+					List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+					// LINQ query - not executed yet (deferred)
+					var evenNumbers = numbers.Where(n => n % 2 == 0);
+					
+					//Modify the source AFTER query is defined
+					numbers.Add(7);
+					
+					// Now execute the query
+					foreach (var num in evenNumbers)
+					
+					Console.WriteLine(num);
+					
+		Here 7 is not printed in the foreach because of c# lazy   evalution,
+		because the query was not run until the foreach loop.
+
+🚨 Immediate Execution vs Deferred Execution
+Type	Executes Immediately?	Example
+Deferred	❌ No	.Where(), .Select(), .Skip()
+Immediate	✅ Yes	.ToList(), .Count(), .Sum()	
+
+ Why Use Deferred Execution?
+✅ Performance: No work is done until needed.
+
+✅ Freshness: Query reflects the most recent data.
+
+✅ Composability: Queries can be built in steps before execution.	
+
+---------------------------------------
+ADO
+--------------------------------------
+	SQLConnection
+	SQLCommand
+	SQLDataReader these classes are called .NET provider classes
+	These classes are responsible for interaction with database and performing CRUD operations.
+1.Connect to database
+2.Prepare SQL command
+3.Execute the command
+ 
+try datatable
+	datatable.Load(dr)
+	
+SQLDataReader
+		forward only reading(if u want to read 10 th record u need to start reading from the begining)
+		is connection oriented 
+		the data is available till the connection is open
+		its read only
+		you need to close and open connection explicitly
+		
+		
+		
+Delegate:allow the method to pass as a parameter to a function
+	
+MVC and MVC5	
+
+Web api - and MVC structure 
+	Model 	-	Represents the data and business logic.
+				Typically consists of classes that interact with the database.
+				Example: Product, Customer, Order classes.
+	View	-	Responsible for displaying the user interface.Displays data received from the controller.
+	Controller- Handles user input and interactions.Acts as an intermediary between Model and View.
+Sealed classes
+	 sealed class in C# is a class that cannot be inherited by any other class.Prevent inheritance
+Partial classes
+	A partial class allows you to split the definition of a class into multiple files. All parts are combined 
+	when the program is compiled,as if they were written in one file.
+	You cannot duplicate the same fields or properties in different partial declarations of the same class.
+	Each member must be declared only once across all partial parts.
+middlewares-imp
+property
+dependency injection
+how in memmory dependency is handled
+implicite and explicit casting
+
+
+	

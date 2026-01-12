@@ -1,0 +1,707 @@
+
+
+# ✅1. .NET / C# Technical Questions**
+
+###Core .NET & C#**
+
+1. Explain the difference between.NET Framework vs .NET Core**. Why would you choose one over the other?
+	
+2. What areasync/await**, and how do they improve performance?
+	Asynchronous programming allows a program to start a long-running task and continue executing other tasks without waiting for the first one to finish. 
+	It keeps the application responsive and is especially useful for operations like file I/O and web requests.
+		async is a keyword used to mark a method as asynchronous, meaning it can run operations without blocking the calling thread.
+		await is a keyword used inside an async method to pause execution until a Task completes, without blocking the thread.
+3. What is the difference betweenIEnumerable, IQueryable, ICollection**?
+	IEnumerable is used to iterate over in-memory collections and executes LINQ queries in memory.
+	IQueryable extends IEnumerable and is used for querying databases or remote data sources, executing queries on the server.
+	ICollection also extends IEnumerable but allows modifying the collection with Add, Remove, and Count
+4. ExplainDependency Injectionand how you have implemented it in your APIs.
+		
+5. What areSingleton**,Scoped**, andTransientservices in .NET Core?
+
+| Lifetime      		| Description                                                               			| Typical Use Case                          		|
+| ------------------------------------| ---------------------------------------------------------------------------------------------------- | ----------------------------------------- -------------------|
+|Singleton		| Only one instance is createdfor the entire application lifetime. 	    	| Configuration, logging, caching services  	|
+|Scoped   		| One instance is created per HTTP request.                             		| Database contexts, user-specific services 	|
+|Transient		| A new instance is created every time it’s requested.                  		| Lightweight stateless services, helpers   	|
+
+6. How do you manageconfigurationin .NET Core (appsettings.json, environment variables)?
+	In .NET Core, configuration is centralized and flexible using the IConfiguration interface.
+Common sources include:
+	appsettings.json – default configuration file.
+	appsettings.{Environment}.json – environment-specific settings (e.g., appsettings.Development.json).
+	private readonly IConfiguration _configuration;
+	var apiKey = _configuration["AppSettings:ApiKey"];
+
+7. What areModel Binding and Routingin ASP.NET Core?
+	Model binding : HTTP request data (like query strings, form data, route values, or JSON body) to parameters of controller actions or model objects.		
+	Routing determines how an HTTP request is mapped to a specific controller/action.
+	It matches URL patterns to actions in controllers.
+8. What isMiddleware**? Have you created a custom middleware?
+
+9. How do you handleglobal exception handlingin .NET Core?
+	using middleware
+10. What is the use ofAutoMapper**? Did you use any mapping techniques?
+	automap  a class and DTO
+	It automatically maps properties from one object to another, usually between DTOs (Data Transfer Objects) and domain models.
+###REST API Development**
+
+1. How do you design aRESTful API**, and what best practices do you follow?
+	Consistent Naming: Use plural nouns for resources.
+	Use proper HTTP methods & status codes.
+	Stateless design: Don’t store client session on server.
+	Validation & Error Handling: Return clear messages.
+	Security: Use authentication (JWT, OAuth) and HTTPS.
+	Documentation: Use Swagger/OpenAPI for API docs.
+	Pagination & Filtering: Avoid returning huge data sets in one request.
+	Logging & Monitoring: Track API usage and exceptions.
+2. What is the difference betweenPUT vs PATCH**?
+3. How do you handleversioningin APIs?
+	URL Versioning
+	[Route("api/v{version:apiVersion}/employees")]
+	[ApiVersion("1.0")]
+4. How do you secure APIs? JWT? API Key?
+	
+JWT
+Token contains <Header>.<Payload>.<Signature>
+| Part      | Contains                                 | Purpose                                |
+| --------- | ---------------------------------------- | -------------------------------------- |
+| Header    | Algorithm, token type                    | Metadata about the token               |
+| Payload   | Claims (registered, public, private)     | User info and other data               |
+| Signature | Hash of header + payload with secret key | Ensures token integrity & authenticity |
+
+"JWT is a stateless token used for authentication and authorization. It has three parts: header, payload, and signature. 
+The server can verify the token without storing session data, and it usually includes an expiration to enhance security."
+
+Authorization
+ [Authorize(Roles = "Admin")] 
+
+5. How do you implement filtering, pagination, and sortingin APIs?
+	
+
+---
+
+# ✅2. SQL Server / Database Questions**
+
+###SQL Querying & Performance**
+
+1. Explain how you optimized SQL queries in your projects.
+2. What is the difference betweenINNER JOIN**,LEFT JOIN**,CROSS JOIN**?
+3. How do you useCTE**, and when is it preferred over subqueries?
+4. What areIndexes**? Difference betweenclusteredandnon-clusteredindexes?
+5. When can an index reduce performance?
+6. How do you analyze a query usingExecution Plan**?
+7. Have you usedstored proceduresorfunctions**? Why or why not?
+8. How do you handledeadlocksin SQL Server?
+9. How do you convertrun_dateandrun_timecolumns (from SQL Jobs) into proper datetime?
+
+
+---
+
+# ✅3. Entity Framework / Data Access**
+
+1. Explain the difference betweenEF Core vs ADO.NET**.
+2. What is Code First vs Database Firstapproach?
+3. What areMigrations**?	
+	Migrations are a feature in Entity Framework Core that allow you to update the database schema (tables, columns, relationships) based on changes in your C# model classes.
+	Migrations keep your database in sync with your C# code.
+4. How do you improve EF performance?
+   (Tracking vs No Tracking queries)
+	1.AsNoTracking()
+	2.
+5. What isLazy Loading**,Eager Loading**,Explicit Loading**?
+6. How do you handletransactionsin EF Core?
+
+---
+
+# ✅4. React (Basics) — From Your Resume**
+
+1. How does thecomponent lifecyclework in React?
+2. Difference betweenstateandprops**?
+3. What arecontrolled components**?
+4. How do you call.NET APIsfrom React?
+5. What is the difference betweenuseEffectanduseCallback**?
+6. How did you structure your React project for SQL job monitoring?
+
+---
+
+# ✅5. CI/CD, Jenkins & DevOps Questions**
+
+1. Explain your experience withJenkins pipelines**.
+2. How did you automatebuild and deploymentusing Jenkins?
+3. What scripting languages did you use inside Jenkins pipelines?
+4. How did your.NET auto-deployment toolwork?
+5. How do you integrateGitwith Jenkins?
+6. Explain a scenario where you handled afailed buildin Jenkins.
+7. What is your approach toCI/CD best practices**?
+
+---
+
+# ✅6. Project-Based Questions (Based on Resume)**
+
+###React + .NET SQL Job Monitoring**
+
+1. How did you design the architecture for your SQL job monitoring system?
+2. How did you fetch job history from SQL Server?
+3. How did you optimize the API performance for large job logs?
+4. Did you use any caching approach?
+
+###PDF Conversational AI Assistant**
+
+1. How did you extract text from PDF for the chatbot?
+2. What NLP techniques or libraries did you use?
+3. How did you implement context-based responses?
+4. How did you ensure accuracy for large PDFs?
+
+###Auto-Deployment Tool Using C#**
+
+1. What were the key components of your deployment automation tool?
+2. How did you package and release .NET builds?
+3. How did you ensure rollback capability?
+
+---
+
+# ✅7. Behavioral / Soft-skill Questions (Cognizant Focus Areas)**
+
+1. Explain a time when you solved acritical production issue**.
+2. Tell me about a challenging project and how you handled it.
+3. How do you prioritize tasks when working in a fast-paced environment?
+4. Have you mentored juniors or guided team members?
+5. Give an example of automation you built that saved time.
+6. How do you collaborate with cross-functional teams (QA, DevOps, Product, etc.)?
+
+---
+
+# ✅8. Scenario-Based Questions (Very Common in Cognizant)**
+
+1.Your API is slow in production. How would you diagnose it?**
+2.A deployment failed during a release window. What would you do?**
+3.Your SQL query takes 10 seconds to run in production but only 1 second locally—why?**
+4.Management asks you to redesign your API to support thousands of requests. How do you approach scalability?**
+5.A React screen is taking too long to load—how do you optimize it?**
+
+---
+
+# ✅9. System Design (Mid-Level)**
+
+(not high-level architect questions, just mid-level .NET dev)
+
+1. Design alog monitoring systemfor SQL Jobs.
+2. Design afile upload and processing APIfor PDFs.
+3. Design arole-based access control systemin .NET.
+4. How would you structure amicroservicefor job monitoring?
+
+
+----------------------------------------------------------------------
+
+# ✅1. OOPS & Design Patterns (Very Important for Cognizant)**
+
+Cognizant asks strong OOPS questions for 3–5-year candidates.
+
+### Add these:
+
+* ExplainSOLID principleswith real-life examples.
+* What isabstractionvsencapsulation**?
+* What is the difference betweeninterfaceandabstract class**?
+* Explainpolymorphismand give a real example from your project.
+* What are commondesign patternsyou have used (Factory, Singleton, Repository)?
+
+---
+
+# ✅2. Exception Handling & Logging**
+
+Very frequently asked for .NET roles.
+
+### Add these:
+
+* How do you implementglobal exception handlingin .NET Core?
+* What logging frameworks have you used? (**Serilog**,NLog**,ILogger**?)
+* How do you log structured data (JSON logging)?
+* How do you handleretry logicor recover from API/database failures?
+
+---
+
+# ✅3. Authentication & Authorization (Security)**
+
+Cognizant places heavy emphasis on security because many projects are for BFSI (Banking & Finance).
+
+### Must-have:
+
+* What isJWT tokenauthentication? Explain the flow.
+* How do you validate a token in .NET?
+* What is the difference betweenauthenticationandauthorization**?
+* ExplainRole-based authorizationvsPolicy-based authorization**.
+* How do you secure sensitive data in appsettings.json?
+
+---
+
+# ✅4. LINQ Advanced Questions**
+
+These are often asked for mid-level developers.
+
+### Include:
+
+* What isdeferred executionin LINQ?
+	“Deferred execution in LINQ means that the query is not executed when it is defined, but only when its results are actually enumerated. This allows efficient queries, reflects latest data, and supports query chaining. 
+	Methods like Where or Select are deferred, while methods like ToList() or Count() execute immediately.”
+* LINQ: `Select` vs `SelectMany`.
+* What is the difference betweenWhereandFind**?
+* Why should you avoid `ToList()` early?
+
+---
+
+# ✅5. Multithreading & Task Parallelism (C#)**
+
+You worked on automation tools, so they may ask deeper C# questions.
+
+### Add:
+
+* Difference betweenTaskvsThread**.
+* How doesTask.Run()work internally?
+* What is alock**, and when do you use it?
+* Explainthread safetyand race conditions.
+
+---
+
+# ✅6. API Testing & Tools**
+
+Often asked: how do YOU test your own APIs?
+
+### Add:
+
+* How do you test APIs usingPostman**?
+* What arepre-request scriptsandtest scriptsin Postman?
+* Have you usedSwagger/OpenAPI**?
+
+---
+
+# ✅7. Cloud Concepts (Even Basic)**
+
+Cognizant expects *basic* cloud knowledge even for non-cloud projects.
+
+### Include Azure basics:
+
+* What isIaaS, PaaS, SaaS**?
+* What isAzure App Service**?
+* What isAzure SQL Database**?
+* What isAzure Blob Storage**?
+* How do you deploy a .NET application to Azure?
+
+---
+
+# ✅8. Git & Branching Strategy**
+
+Since your resume includes Git, these are expected.
+
+### Add:
+
+* What is the difference betweenmergeandrebase**?
+* What isGitflow**, and which branching model did your team follow?
+* How do you resolve merge conflicts?
+* What is the meaning ofstash**?
+
+---
+
+# ✅9. Web Fundamentals (.NET + React)**
+
+Cognizant checks basics of full-stack knowledge.
+
+### Add:
+
+* What isCORS**, and how do you enable it in .NET?
+* What isCSR vs SSR**?
+* What islocalStoragevssessionStorage**?
+* What isdebouncingandthrottling**? (React UI performance basics)
+
+---
+
+# ✅10. Real-World Scenario Questions**
+
+These determine how you think as a developer.
+
+### Add:
+
+* Your API is returning slow responses. How do you troubleshoot?
+* A SQL query is taking too long. How do you optimize it?
+* Production deployment failed—what are your next steps?
+* A client reports that the UI has stale data. How do you fix caching issues?
+
+
+---
+
+
+
+# ✅1. Common Coding Questions Cognizant Asks for .NET (4 Years)**
+
+###🟦 String / Array Problems**
+
+1. Reverse a string without using built-in reverse. 
+	string name = "athul";
+	string rev = new string(name.Reverse().ToArray());
+	Console.WriteLine(rev);
+
+2. Find the first non-repeating character in a string.
+
+ var firstNonRepeating = str
+            .GroupBy(c => c)              // Group identical characters
+            .Where(g => g.Count() == 1)   // Only groups that appear once
+            .Select(g => g.Key)           // Take the character
+            .FirstOrDefault();            // Take first one
+
+3. Count occurrences of each character in a string.	
+        string name="aatthuul";
+        var countGroup=name.GroupBy(x=>x)
+                            .Select(g=>new {Key=g.Key,Count=g.Count()})
+                            .ToList();
+        foreach(var x in countGroup)
+        {
+            Console.WriteLine($"{x.Key}: {x.Count}");
+        }
+4. Check if two strings are anagrams.D =>  new string(name.OrderBy(x=>x).ToArray());
+	
+5. Find missing number in an array from 1 to N. n*n+1/2
+       
+       int [] nums={1,2,3,4,5,7};//15 
+       int n=nums[nums.Length-1];
+       int sum=n*(n+1)/2;
+       double sumary=nums.Sum();
+       Console.WriteLine(sum-sumary);
+
+6. Find duplicates in an integer array.
+       int [] nums={1,2,3,4,5,7,1,7,5};
+       var duplicates=nums.GroupBy(x=>x)
+                        .Where(g=>g.Count()>1)
+                        .Select(p=>p.Key)
+                        .ToList();
+        foreach(var x in duplicates)   
+        {
+            Console.WriteLine(x);
+        }
+       
+7. Remove duplicates from an array/list.
+	 var result=nums.Distinct().ToList();
+	\
+with hashset
+	  HashSet<int> nodup=new HashSet<int>(nums);
+      foreach(var x in nodup)
+        Console.WriteLine(x);
+
+6.
+  int[] arr = { 5,1, 2, 2, 3, 4, 4, 5 };
+        HashSet<int> seen= new HashSet<int>(arr);
+        foreach(var x in seen)
+        {
+            Console.WriteLine(x);
+        }
+		
+To keep order
+int[] arr = { 5,1, 2, 2, 3, 4, 4, 5 };
+        HashSet<int> seen= new HashSet<int>();
+       
+        for(int i=0;i<arr.Length;i++)
+        {
+            if(seen.Add(arr[i]))
+            {
+                result.Add(arr[i]);
+            }
+        }		
+
+---
+Find the duplicate in a string array with Linq
+
+string [] names={"aa","bb","cc","aa"};
+var result=names.GroupBy(x=>x)
+		.Where(g=>g.Count()>1)
+		.Select(p=>p.Key)
+		.ToList();	
+
+---
+Two sum : Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+public int[] TwoSum(int[] nums, int target) {
+        
+        Dictionary<int,int> numDict=new Dictionary<int,int>();
+        int balance;
+        for(int i=0;i<nums.Length;i++)
+        {
+            balance=target-nums[i];
+            if(numDict.ContainsKey(balance))
+            {
+                return [numDict[balance],i];
+            }
+            else
+            {
+                numDict[nums[i]]=i;
+            }
+        }
+        return [];
+    }
+}
+
+
+----
+Reverse a sentance
+
+string rev=string.Join(" ",name.Split(" ").ToArray().Reverse());
+
+
+
+# ✅2. LINQ Coding Questions (Very common for .NET roles)**
+
+1. Write a LINQ query to find employees earning more than 50k. Employess.Where(x=>x.salary>50)
+
+	if you want to select only name
+	var result=employees.Where(x=>x.salary>5000)
+				.Select(x=>x.name)
+				
+2. LINQ to get the second highest number from a list.
+	var result=employees.Select(x=>x.Salary)
+                    .Distinct()
+                    .OrderByDescending(x=>x)
+                    .Skip(1)
+                    .First();
+	
+3. Group a list of objects by a property using LINQ.
+		var result=employee.GroupBy(x=>x.Salary)
+		will create a group of people having same salary,
+			to itertate 
+			
+var groups = employees.GroupBy(e => e.Salary);
+
+foreach (var group in groups)
+{
+    Console.WriteLine($"Salary Group: {group.Key}");
+
+    foreach (var emp in group)
+    {
+        Console.WriteLine($"   {emp.Id} - {emp.Name} - {emp.Salary}");
+    }
+}
+
+			
+			
+			
+4. Convert a list of objects into a dictionary using LINQ.
+	
+	var dis=employee.ToDictionary(x=>x.id,x=>x);
+	var dis2=employee.ToDictionary(x=>x.id,x=>new {x.name,x.Salary})
+	
+5. LINQ query to join two lists.
+	var result= employee.Join(deparment,
+	e=>e.Depid,
+	d=>d.id,
+	(e,d)=>new
+	{
+	EmployeeName=e.name,
+	
+	Department =d.name
+	}
+	
+	
+	)
+	
+
+---
+
+# ✅3. C# Collections + OOPS Coding Scenarios**
+
+1. Implement a simple class with properties and write code to create objects.
+2. Difference between List vs Dictionary — write code to demonstrate.
+3. Create a Singleton class in C#.
+4. Write a custom exception class.
+
+using System;
+
+public class InvalidAgeException : Exception
+{
+    // Parameterless constructor
+    public InvalidAgeException()
+    {
+    }
+
+    // Constructor with custom message
+    public InvalidAgeException(string message) : base(message)
+    {
+    }
+
+    // Constructor with custom message and inner exception
+    public InvalidAgeException(string message, Exception inner) : base(message, inner)
+    {
+    }
+}
+
+
+---main method
+
+ try
+        {
+            int age = -5;
+            if (age < 0 || age > 120)
+            {
+                throw new InvalidAgeException("Age must be between 0 and 120.");
+            }
+        }
+        catch (InvalidAgeException ex)
+        {
+            Console.WriteLine($"Custom Exception Caught: {ex.Message}");
+        }
+
+5. Demonstrate inheritance using C#.
+
+
+
+---
+
+# ✅4. ASP.NET Core / API Related Coding (Scenario-based)**
+
+You may get questions like:
+
+* “Write a simple Web API controller with GET and POST methods.”
+* “How do you validate a model in .NET Core?”
+	1.Data anotation with model property like range,required,Stringlength
+	eg. [Required(ErrorMessage = "Name is required")]
+		public string Name { get; set; }
+	2. . Automatic Validation with [ApiController]	
+* “Write a middleware that logs request time.
+	
+* “Write code to handle dependency injection with an interface.”
+
+---
+
+# ✅5. SQL Coding Questions (Very likely)**
+
+1. Write a query to get thesecond highest salary**.
+	-- Using DENSE_RANK to get second highest salary
+	WITH SalaryRank AS (
+		SELECT Salary,
+           DENSE_RANK() OVER (ORDER BY Salary DESC) AS dr
+		FROM Employee
+	)
+	SELECT Salary
+	FROM SalaryRank	
+	WHERE dr = 2;
+	----------------------
+	SELECT MAX(salary) AS SecondHighestSalary
+	FROM Employee
+	WHERE salary < (SELECT MAX(salary) FROM Employee);
+
+
+			
+			
+2. Write a query to findduplicate records**.
+	SELECT Email, COUNT(*) AS DuplicateCount
+	FROM Employee
+	GROUP BY Email
+	HAVING COUNT(*) > 1;
+	----
+	SELECT Name, Department, COUNT(*) AS DuplicateCount
+	FROM Employee
+	GROUP BY Name, Department
+	HAVING COUNT(*) > 1;
+
+
+	
+3. SQL query tojoin three tables**.
+	SELECT e.EmployeeId, e.Name, d.DepartmentName, r.RoleName
+	FROM Employee e
+	INNER JOIN Department d
+		ON e.DepartmentId = d.DepartmentId
+	INNER JOIN Role r
+		ON e.RoleId = r.RoleId;
+
+	
+4. Write a query toget count of jobs failed in the last 24 hours**
+	SELECT COUNT(*) AS FailedJobCount
+	FROM JobHistory
+	WHERE RunStatus = 0
+	AND RunDateTime >= DATEADD(HOUR, -24, GETDATE());
+
+   
+   
+5. Convert `run_date` + `run_time` into a single datetime.
+
+---
+
+# ✅6. Data Structures (Basic level)**
+
+1. Reverse a linked list (logic explanation).
+2. What is a stack? Implement push and pop.
+3. Queue implementation example.
+4. Big-O complexity basics (simple ones only).
+
+---
+
+
+SQL Quesitons
+--------------------------------------
+
+Second highest salary
+
+select * from employee
+order by salary desc
+offset 1 row fetch next 1 row only
+
+select max(salary) from employee
+where salary<(select max(salary) from employee)
+
+
+
+-----
+
+Find duplicate records in a table.
+
+select name,salary,count(*)
+from employees
+group by name,salary
+having count(*)>1
+
+
+------------
+Delete duplictes
+
+DELETE FROM Employee
+WHERE EmployeeID NOT IN (
+    SELECT MIN(EmployeeID)
+    FROM Employee
+    GROUP BY EmployeeName, Salary
+);
+
+
+------------------
+Employees who joined in the last 30 days.
+
+SELECT *
+FROM Employees
+WHERE JoinDate >= DATEADD(DAY, -30, GETDATE());
+
+
+------------------------------------
+Count employees who joined each month.
+
+SELECT YEAR(JoinDate) AS [Year],
+       MONTH(JoinDate) AS [Month],
+       COUNT(*) AS TotalEmployees
+FROM Employees
+GROUP BY YEAR(JoinDate), MONTH(JoinDate)
+ORDER BY [Year], [Month];
+
+------------------------------------
+Employees whose names start with 'A' and end with 'T'.
+SELECT *
+FROM Employees
+WHERE Name LIKE 'A%T';
+--------------------------------------
+
+13. Employees with salary greater than their department average.
+SELECT e.*
+FROM Employees e
+WHERE e.Salary > (
+    SELECT AVG(Salary)
+    FROM Employees
+    WHERE DeptId = e.DeptId
+);
+
+----------------------
+
+
+
